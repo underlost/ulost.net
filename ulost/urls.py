@@ -13,6 +13,7 @@ urlpatterns = [
     url(r'^', include('pithy.urls', namespace='Pithy')),
 
     #Static
+    url(r'^$', TemplateView.as_view(template_name="index.html"), name="Index_page"),
     url(r'^404/$', TemplateView.as_view(template_name="404.html"), name="404_page"),
 	url(r'^500/$', TemplateView.as_view(template_name="500.html"), name="500_page"),
 	url(r'^robots\.txt$', TemplateView.as_view(template_name="robots.txt", content_type='text/plain')),
