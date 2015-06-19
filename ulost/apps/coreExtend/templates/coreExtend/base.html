@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">{% load core_tags %}
+  <head>
+		<title>{% block title %}{% endblock %}{{site_name}}</title>
+		<link rel="stylesheet" href="{{STATIC_URL}}replica/css/replica-ui.min.css">
+		<meta charset="UTF-8" />
+		<meta name="author" content="{{site_name}}" />
+		<meta name="description" content="{{site_desc}}" />
+		<meta name="viewport" content="width=device-width, minimum-scale=0.6, maximum-scale=1.0" />
+
+		<script type="text/javascript">
+		var _gaq = _gaq || [];
+		_gaq.push(['_setAccount', '{{analytics_id}}']);
+		_gaq.push(['_setDomainName', '{{base_host}}']);
+		_gaq.push(['_trackPageview']);
+
+		(function() {
+		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		})();
+		</script>
+
+		{% block extra %}{% endblock %}
+	</head>
+
+<body class="{% block page %}{% endblock %}">
+	<div id="page">
+		{% if user.is_authenticated and not account_settings %}
+			<p class="logged-in">Already Logged in. <a href="{% url 'Core:Logout' %}">Logout?</a></p>
+		{% else %}
+			{% block content %}{% endblock %}
+		{% endif %}
+	</div>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+	<script type="text/javascript" src="{{STATIC_URL}}js/replica-ui.min.js"></script>
+</body>
+</html>

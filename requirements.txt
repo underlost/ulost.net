@@ -1,0 +1,12 @@
+Django>=1.8
+gunicorn>=19.3.0
+psycopg2==2.5.1
+dj-database-url==0.3.0
+wsgiref==0.1.2
+celery>=2.3.3
+django-celery>=3.0.11
+django-picklefield
+newrelic
+gevent
+whitenoise
+djangorestframework>=3.1.1
