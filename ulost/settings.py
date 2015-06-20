@@ -143,6 +143,7 @@ SITE_DESC =  os.environ.get('SITE_DESC', 'A private URL shortening service')
 SITE_URL =  os.environ.get('SITE_URL', 'https://ulost.net/')
 SITE_AUTHOR = os.environ.get('SITE_AUTHOR', 'Tyler Rilling')
 SITE_ID = 1
+MIXPANEL_TOKEN = os.environ.get('MIXPANEL_TOKEN')
 
 #rest_framework
 REST_FRAMEWORK = {
