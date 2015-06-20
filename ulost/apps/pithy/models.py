@@ -22,6 +22,9 @@ class SiteLink(models.Model):
     note = models.TextField(_('body'), blank=True)
     note_html = models.TextField(blank=True)
 
+    def __unicode__(self):
+		return self.link
+
     def get_absolute_url(self):
 		return "/%s/" % (self.slug)
 
