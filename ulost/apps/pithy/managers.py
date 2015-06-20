@@ -6,6 +6,8 @@ from coreExtend.models import Account
 from .utils import guid_generator
 from .models import *
 
+BLOCKED_IPS_LIST = 'Pithy:blocked-ips'
+
 class BlockedManager(models.Manager):
 
     def get_ips(self):

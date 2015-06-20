@@ -9,8 +9,8 @@ def LinkRedirect(request, slug):
 	#Redirects links and keeps track of them
 	try:
 		outgoing_link = obj.link
-		link_guid = obj.guid
-		link_click = ClickLink(link=link_guid)
+		link_guid = obj.pk
+		link_click = ClickLink(link_id=link_guid)
 		link_click.store(request)
 	except KeyError:
 		# Someone got here without the link param

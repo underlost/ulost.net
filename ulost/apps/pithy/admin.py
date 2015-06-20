@@ -9,8 +9,8 @@ class SiteLinkAdmin(admin.ModelAdmin):
     exclude = ('note_html',)
 
 class ClickLinkAdmin(admin.ModelAdmin):
-    search_fields = ('link', 'referer', 'ip_addr' )
-    list_display = ('link', 'referer', 'ip_addr', 'pub_date', 'user_agent')
+    search_fields = ('link.link', 'link.slug', 'referer', 'ip_addr' )
+    list_display = ('link.link', 'link.slug', 'referer', 'ip_addr', 'pub_date', 'user_agent')
 
 class BlockedIpAdmin(admin.ModelAdmin):
     list_display = ('name', 'ip_addr')

@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<p class="lead">Shortened URLS.</p>
+<p class="lead">URL List.</p>
 
 <ol class="linklist">
     {% for object in object_list %}
@@ -10,8 +10,8 @@
     {% endifchanged %}
     <li>
         {% if object.note %}<span class="note">{{ object.note_html|safe }}</span>{% endif %}
-        <span>Original URL: {{object.link}}</span>
-        <span>Shortened: <a href="{{BASE_URL}}{{object.get_absolute_url}}">{{BASE_URL}}{{object.get_absolute_url}}</a>
+        <small>Original URL: {{object.link}}</small>
+        <small>Shortened: <a href="{{BASE_URL}}{{object.get_absolute_url}}">{{BASE_URL}}{{object.get_absolute_url}}</a></small>
     </li>
     {% empty %}
     <li>No links added yet.</li>
