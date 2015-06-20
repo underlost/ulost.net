@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<p class="lead">Shortened URLS.</p>
+
+<ol>
+{% for object in object_list %}
+    <li>
+        {% ifchanged object.pub_date.day %}
+        <div class="datetime">Added {{ object.pub_date|date:"l, F jS Y" }}</div>
+        {% endifchanged %}
+
+        {% if object.note %}<p class="lead">{{object.note_html|safe}}</p>{% endif %}
+        <span>Original URL: {{object.link}}</span>
+        <span>Shortened: <a href="{{site_url}}{{object.get_absolute_url}}">{{site_url}}{{object.get_absolute_url}}</a>
+    </li>
+    {% empty %}
+    <li>No links added yet.</li>
+{% endfor %}
+</ol>
+{% endblock %}

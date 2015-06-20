@@ -21,6 +21,9 @@ class SiteLink(models.Model):
     note = models.TextField(_('body'), blank=True)
     note_html = models.TextField(blank=True)
 
+    def get_absolute_url(self):
+		return "/%s/" % (self.slug)
+
     def save(self, *args, **kwargs):
         if not self.slug:
             self.slug = guid_generator(length=8)

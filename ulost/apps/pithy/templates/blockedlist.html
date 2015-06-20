@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<p class="lead">Blocked IP Addresses.</p>
+<ol>
+{% for object in object_list %}
+    <li>{% if object.name %}{{object.name}} - {% endif %}{{object.ip_addr}}</li>
+    {% empty %}
+    <li>No addresses blocked.</li>
+{% endfor %}
+</ol>
+{% endblock %}
