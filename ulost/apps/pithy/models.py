@@ -5,6 +5,7 @@ from django.db import models
 from django.core.cache import cache
 from django.conf import settings
 from django.utils.translation import ugettext_lazy as _
+from django.utils.encoding import smart_unicode, smart_str
 
 from coreExtend.models import Account
 from .utils import guid_generator
