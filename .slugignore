@@ -1,4 +1,4 @@
-source
+ulost/static_precompile
 dist
 node_modules
 grunt
