@@ -29,7 +29,9 @@ class SiteLink(models.Model):
         if not self.slug:
             self.slug = guid_generator(length=8)
         if self.note:
-            self.note_html = bleach.clean(markdown.markdown(smart_unicode(self.note)))
+            #For user submitted urls...
+            #self.note_html = bleach.clean(markdown.markdown(smart_unicode(self.note)))
+            self.note_html = markdown.markdown(smart_unicode(self.note))
         super(SiteLink, self).save(*args, **kwargs)
 
 class ClickLink(models.Model):
