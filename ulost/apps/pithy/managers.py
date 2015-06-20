@@ -1,7 +1,7 @@
 from django.db import models
 from django.core.cache import cache
 from django.conf import settings
-from CoreExtend.models import Account
+from coreExtend.models import Account
 
 from .utils import guid_generator
 from .models import *

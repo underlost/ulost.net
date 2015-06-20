@@ -3,7 +3,7 @@ from django.contrib import admin
 from django.db import models
 from .models import SiteLink, ClickLink, BlockedIp
 
-class SiteLink(admin.ModelAdmin):
+class SiteLinkAdmin(admin.ModelAdmin):
     list_display = ('user', 'link', 'pub_date' )
     list_filter = ('user')
     exclude = ('note_html',)

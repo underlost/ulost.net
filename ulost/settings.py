@@ -1,15 +1,15 @@
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-import os
+import os, sys
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 CURRENT_DIR = os.path.dirname(__file__)
 APPS_ROOT = os.path.join(CURRENT_DIR, 'apps')
-TEMPLATE_DIRS = os.path.join(CURRENT_DIR, 'templates')
+TEMPLATE_DIRS = (os.path.join(BASE_DIR, 'templates'),)
 
 if '/apps' not in ' '.join(sys.path):
     sys.path.append(APPS_ROOT)
 
-SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
+SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True

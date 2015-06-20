@@ -6,8 +6,9 @@ from django.core.cache import cache
 from django.conf import settings
 from django.utils.translation import ugettext_lazy as _
 
-from CoreExtend.models import Account
+from coreExtend.models import Account
 from .utils import guid_generator
+from .managers import BlockedManager
 
 BLOCKED_IPS_LIST = 'Pithy:blocked-ips'
 
@@ -18,7 +19,7 @@ class SiteLink(models.Model):
     pub_date = models.DateTimeField(auto_now_add=True)
     slug = models.SlugField(max_length=512, blank=True, unique=True)
     note = models.TextField(_('body'), blank=True)
-	note_html = models.TextField(blank=True)
+    note_html = models.TextField(blank=True)
 
     def save(self, *args, **kwargs):
         if not self.slug:
