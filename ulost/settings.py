@@ -4,7 +4,6 @@ import os, sys
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 CURRENT_DIR = os.path.dirname(__file__)
 APPS_ROOT = os.path.join(CURRENT_DIR, 'apps')
-TEMPLATE_DIRS = (os.path.join(BASE_DIR, 'templates'),)
 
 if '/apps' not in ' '.join(sys.path):
     sys.path.append(APPS_ROOT)
@@ -35,6 +34,7 @@ INSTALLED_APPS = (
     'django.contrib.flatpages',
     'django.contrib.humanize',
     'django.contrib.sitemaps',
+    'django.contrib.sites',
 
     'djcelery',
     'rest_framework',
@@ -66,7 +66,7 @@ SUBDOMAIN_URLCONFS = {
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [ os.path.join(CURRENT_DIR, 'templates'), ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -74,6 +74,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.core.context_processors.media',
+                'django.core.context_processors.static',
                 'coreExtend.context_processors.template_settings',
                 'coreExtend.context_processors.template_times',
             ],
@@ -123,10 +125,10 @@ SESSION_COOKIE_DOMAIN = '.ulost.net'
 
 # Static files (CSS, JavaScript, Images)
 STATIC_ROOT = 'staticfiles'
-STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'), )
+STATICFILES_DIRS = (os.path.join(CURRENT_DIR, 'static'), )
 STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 STATIC_URL = '/static/'
-EDIA_URL = '/static/media/'
+MEDIA_URL = '/static/media/'
 
 #coreExtend settings
 AUTH_USER_MODEL = 'coreExtend.Account'
@@ -140,6 +142,7 @@ SITE_NAME = os.environ.get('SITE_NAME', 'ulost')
 SITE_DESC =  os.environ.get('SITE_DESC', 'A private URL shortening service')
 SITE_URL =  os.environ.get('SITE_URL', 'https://ulost.net/')
 SITE_AUTHOR = os.environ.get('SITE_AUTHOR', 'Tyler Rilling')
+SITE_ID = 1
 
 #rest_framework
 REST_FRAMEWORK = {

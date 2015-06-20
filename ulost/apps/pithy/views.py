@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponseRedirect
 
-from .models import SiteLink, LinkClick
+from .models import SiteLink, ClickLink
 
 def LinkRedirect(request, slug):
 	obj = get_object_or_404(SiteLink, slug=slug)
@@ -9,7 +9,7 @@ def LinkRedirect(request, slug):
 	try:
 		outgoing_link = obj.link
 		link_guid = obj.guid
-		link_click = LinkClick(link=link_guid)
+		link_click = ClickLink(link=link_guid)
 		link_click.store(request)
 	except KeyError:
 		# Someone got here without the link param

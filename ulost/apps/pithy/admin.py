@@ -5,7 +5,7 @@ from .models import SiteLink, ClickLink, BlockedIp
 
 class SiteLinkAdmin(admin.ModelAdmin):
     list_display = ('user', 'link', 'pub_date' )
-    list_filter = ('user')
+    list_filter = ('user',)
     exclude = ('note_html',)
 
 class ClickLinkAdmin(admin.ModelAdmin):

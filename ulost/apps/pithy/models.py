@@ -33,7 +33,7 @@ class ClickLink(models.Model):
     link = models.ForeignKey(SiteLink, null=True)
     referer = models.CharField(max_length=512, null=True)
     user_agent = models.CharField(max_length=1024, null=True)
-    ip_addr = models.IPAddressField()
+    ip_addr = models.GenericIPAddressField(null=True)
     pub_date = models.DateTimeField(auto_now_add=True)
 
     def store(self, request):
@@ -53,7 +53,7 @@ class ClickLink(models.Model):
 
 class BlockedIp(models.Model):
     name = models.CharField(max_length=128, blank=True)
-    ip_addr = models.IPAddressField(null=True)
+    ip_addr = models.GenericIPAddressField(null=True)
     objects = BlockedManager()
 
     def __unicode__(self):
