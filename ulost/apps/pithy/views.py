@@ -1,12 +1,14 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponseRedirect
 from django.views.generic.list import ListView
+from django.conf import settings
 from mixpanel import Mixpanel
 
 from .models import SiteLink, ClickLink, BlockedIp
 
 def LinkRedirect(request, slug):
 	obj = get_object_or_404(SiteLink, slug=slug)
+	mp = Mixpanel(settings.MIXPANEL_TOKEN)
 	#Redirects links and keeps track of them
 	try:
 		outgoing_link = obj.link
