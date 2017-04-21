@@ -1,0 +1,35 @@
+{
+  "name": "ulost.net",
+  "description": "A dumb little private url shortener written in Django/Python 3.6",
+  "keywords": [
+    "css",
+    "js",
+    "scss",
+    "mobile-first",
+    "responsive",
+    "web",
+    "Python",
+    "Django"
+  ],
+  "version": "2.0.0",
+  "homepage": "https://ulost.net",
+  "authors": [
+    "Tyer Rilling <tyler@underlost.net>",
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "1.9.1 - 2",
+    "bootstrap-sass": "3.3.7",
+    "components-font-awesome": "*",
+    "fullpage.js": "^2.9.2",
+    "pace": "pace#^1.0.2",
+    "jquery.scrollbar": "^0.2.11",
+  }
+}

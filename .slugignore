@@ -1,7 +1,3 @@
-ulost/static_precompile
+app/static_precompile
 dist
 node_modules
-grunt
-
-package.json
-gruntfile.js

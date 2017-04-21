@@ -1,0 +1,8 @@
+{
+  "name": "ulost.net",
+  "description": "A dumb little private url shortener written in Django/Python 3.6.",
+  "image": "heroku/python",
+  "repository": "https://github.com/underlost/ulost.net",
+  "keywords": ["python", "django" ],
+  "addons": [ "heroku-postgresql" ]
+}
