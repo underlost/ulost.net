@@ -1,5 +1,7 @@
 import markdown
 import bleach
+import uuid
+import datetime
 
 from django.db import models
 from django.core.cache import cache
@@ -13,13 +15,14 @@ from .managers import BlockedManager
 BLOCKED_IPS_LIST = 'Redirection:blocked-ips'
 
 class SiteLink(models.Model):
-    guid = models.UUIDField(primary_key=True, max_length=32, default=guid_generator(length=32), editable=False)
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     user = models.ForeignKey(settings.AUTH_USER_MODEL)
     link = models.URLField(max_length=512)
-    pub_date = models.DateTimeField(auto_now_add=True)
+    date_created = models.DateTimeField(auto_now_add=True)
+    date_updated = models.DateTimeField(auto_now=True)
     slug = models.SlugField(max_length=512, blank=True, unique=True)
     note = models.TextField(_('body'), blank=True)
-    note_html = models.TextField(blank=True)
+    note_html = models.TextField(blank=True, editable=False)
 
     def __unicode__(self):
         return self.link
@@ -29,7 +32,7 @@ class SiteLink(models.Model):
 
     def save(self, *args, **kwargs):
         if not self.slug:
-            self.slug = guid_generator(length=8)
+            self.slug = str(self.id).replace("-","")[:12]
         if self.note:
             #For user submitted urls...
             #self.note_html = bleach.clean(markdown.markdown(self.note))
@@ -37,12 +40,13 @@ class SiteLink(models.Model):
         super(SiteLink, self).save(*args, **kwargs)
 
 class ClickLink(models.Model):
-    guid = models.UUIDField(primary_key=True, max_length=32, default=guid_generator(length=32), editable=False)
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     link = models.ForeignKey(SiteLink, null=True)
     referer = models.CharField(max_length=512, null=True)
     user_agent = models.CharField(max_length=1024, null=True)
     ip_addr = models.GenericIPAddressField(null=True)
-    pub_date = models.DateTimeField(auto_now_add=True)
+    date_created = models.DateTimeField(auto_now_add=True)
+    date_updated = models.DateTimeField(auto_now=True)
 
     def store(self, request):
         ip_addr = request.META['REMOTE_ADDR']
@@ -57,11 +61,14 @@ class ClickLink(models.Model):
         self.save()
 
     class Meta:
-        ordering = ("-pub_date",)
+        ordering = ("-date_updated",)
 
 class BlockedIp(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(max_length=128, blank=True)
     ip_addr = models.GenericIPAddressField(null=True)
+    date_created = models.DateTimeField(auto_now_add=True)
+    date_updated = models.DateTimeField(auto_now=True)
     objects = BlockedManager()
 
     def __unicode__(self):

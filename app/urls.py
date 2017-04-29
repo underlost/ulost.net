@@ -24,7 +24,7 @@ urlpatterns = [
 
     #API
     url(r'^api/v1/auth/', include('rest_framework.urls', namespace='rest_framework')),
-	url(r'^api/v1/', include('redirection.api.urls', namespace='RedirectionAPI')),
+	#url(r'^api/v1/', include('redirection.api', namespace='RedirectionAPI')),
 ]
 
 urlpatterns += staticfiles_urlpatterns()

@@ -4,13 +4,13 @@ from django.db import models
 from .models import SiteLink, ClickLink, BlockedIp
 
 class SiteLinkAdmin(admin.ModelAdmin):
-    list_display = ('user', 'link', 'pub_date' )
+    list_display = ('user', 'link', 'date_updated' )
     list_filter = ('user',)
     exclude = ('note_html',)
 
 class ClickLinkAdmin(admin.ModelAdmin):
     search_fields = ('ip_addr', )
-    list_display = ('link', 'referer', 'ip_addr', 'pub_date', 'user_agent')
+    list_display = ('link', 'referer', 'ip_addr', 'date_updated', 'user_agent')
 
 class BlockedIpAdmin(admin.ModelAdmin):
     list_display = ('name', 'ip_addr')

@@ -83,7 +83,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY', '4eJUc9x86aXSLG07QgM1qZskVYZTBsWRkRMQc
 ROOT_URLCONF = 'app.urls'
 SUBDOMAIN_URLCONFS = {
 	None: 'app.urls',
-    'api': 'redirection.api.urls'
+    #'api': 'redirection.api'
 }
 
 TEMPLATES = [
